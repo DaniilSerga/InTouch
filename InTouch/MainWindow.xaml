@@ -29,6 +29,8 @@
                         <GradientStop Color="#FFB745DA" Offset="1"/>
                     </LinearGradientBrush>
                 </Border.Background>
+
+                <Image Source="Images/InTouchLogotype.png" VerticalAlignment="Top" HorizontalAlignment="Left" Height="60" Width="200" Margin="20 5 0 0"/>
             </Border>
 
             <Frame x:Name="StartFrame" NavigationUIVisibility="Hidden"/>

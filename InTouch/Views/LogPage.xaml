@@ -13,14 +13,14 @@
     <Border CornerRadius="25">
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="300"/>
+                <ColumnDefinition />
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Width="220">
                 <TextBlock x:Name="GreetingsBlock" Text="Приветствуем!" Style="{StaticResource AuthTypeText}" TextAlignment="Center"/>
                 <TextBlock Foreground="WhiteSmoke" TextWrapping="Wrap" TextAlignment="Center" Margin="0 5 0 0"
-                           Text="Вам необходимо пройти регистрацию чтобы присоединиться к нам."/>
+                           Text="Введите ваши данные для входа и погрузитесь в мир общения."/>
             </StackPanel>
             
             <Button x:Name="CloseButton" 
@@ -38,8 +38,9 @@
                     </StackPanel>
                 </Button.Content>
             </Button>
-            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1">
-                <TextBlock Text="Регистрация" FontFamily="Century Gothic" Foreground="WhiteSmoke" HorizontalAlignment="Center" FontSize="35"/>
+            
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="1">
+                <TextBlock Text="Авторизация" FontFamily="Century Gothic" Foreground="WhiteSmoke" HorizontalAlignment="Center" FontSize="35"/>
 
                 <StackPanel Orientation="Horizontal" Margin="0 15" HorizontalAlignment="Center">
                     <TextBlock>
@@ -61,23 +62,17 @@
                     </TextBlock>
                 </StackPanel>
                 <TextBox Style="{StaticResource AuthTextBox}" 
-                         materialDesign:HintAssist.Hint="ФИО" Width="300"
-                         Margin="0 0 0 5"/>
-                <TextBox Style="{StaticResource AuthTextBox}" 
                          materialDesign:HintAssist.Hint="E-mail" Width="300"
                          Margin="0 5"/>
                 <TextBox Style="{StaticResource AuthTextBox}" 
                          materialDesign:HintAssist.Hint="Пароль" Width="300"
                          Margin="0 5"/>
-                <TextBox Style="{StaticResource AuthTextBox}" 
-                         materialDesign:HintAssist.Hint="Подтвердите пароль" Width="300"
-                         Margin="0 5"/>
 
                 <Button Content="Войти" materialDesign:ButtonAssist.CornerRadius="10" Width="200" Margin="0 20 0 0" Background="Transparent"/>
                 
-                <TextBlock Text="Есть аккаунт?" HorizontalAlignment="Center" Foreground="WhiteSmoke" Margin="0 10 0 0"/>
+                <TextBlock Text="Не создали аккаунт?" HorizontalAlignment="Center" Foreground="WhiteSmoke" Margin="0 10 0 0"/>
                 <TextBlock HorizontalAlignment="Center" Foreground="WhiteSmoke">
-                    <Hyperlink Foreground="Blue" NavigateUri="RegPage.xaml"> Войти в аккаунт </Hyperlink>
+                    <Hyperlink Foreground="Blue" NavigateUri="RegPage.xaml"> Регистрация </Hyperlink>
                 </TextBlock>
             </StackPanel>
         </Grid>
