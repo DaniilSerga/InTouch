@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using InTouch.ViewModels;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
@@ -10,9 +11,16 @@ namespace InTouch.Views
     /// </summary>
     public partial class LogPage : Page
     {
-        public LogPage()
+        private readonly MainWindow _mainWindow;
+        private readonly LogVM _vm = new();
+
+        public LogPage(MainWindow mainWindow)
         {
             InitializeComponent();
+
+            DataContext = _vm;
+
+            _mainWindow = mainWindow;
         }
 
         private void CloseButton_Click(object sender, RoutedEventArgs e) => Application.Current.MainWindow.Close();
@@ -26,6 +34,21 @@ namespace InTouch.Views
             });
 
             e.Handled = true;
+        }
+
+        private void LogButton_Click(object sender, RoutedEventArgs e)
+        {
+            _vm.User.Password = PasswordBox.Password;
+
+            if (_vm.IsUserExists())
+            {
+                _mainWindow.StartFrame.Navigate(new MainMenu(_vm));
+            }
+        }
+
+        private void RegistrationLink_Click(object sender, RoutedEventArgs e)
+        {
+            _mainWindow.StartFrame.Navigate(new RegPage(_mainWindow));
         }
     }
 }

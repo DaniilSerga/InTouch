@@ -9,7 +9,7 @@ namespace InTouch.Models.DbModels
         [Key]
         public int Id { get; set; }
 
-        // ФИО
+        // Full name
         [Required]
         public string? FullName { get; set; }
 
@@ -17,11 +17,11 @@ namespace InTouch.Models.DbModels
         [Required]
         public string? Email { get; set; }
 
+        // Position
+        [Required]
+        public string? Position { get; set; }
         // Password
         [Required]
         public string? Password { get; set; }
-
-        // Avatar image
-        public byte[]? Avatar { get; set; }
     }
 }

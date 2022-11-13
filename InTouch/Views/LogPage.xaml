@@ -9,7 +9,7 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="LogPage"
       Background="Transparent">
-
+    
     <Border CornerRadius="25">
         <Grid>
             <Grid.ColumnDefinitions>
@@ -45,34 +45,46 @@
                 <StackPanel Orientation="Horizontal" Margin="0 15" HorizontalAlignment="Center">
                     <TextBlock>
                         <Hyperlink NavigateUri="https://www.instagram.com/daniilsergx/" Foreground="Black" RequestNavigate="Hyperlink_RequestNavigate" TextDecorations="None">
-                            <materialDesign:PackIcon Kind="Instagram" Height="30" Width="30"/>
+                            <TextBlock Height="30" Width="30">
+                                <materialDesign:PackIcon Kind="Instagram" Height="30" Width="30"/>
+                            </TextBlock>
                         </Hyperlink>
                     </TextBlock>
 
                     <TextBlock>
                         <Hyperlink NavigateUri="https://www.linkedin.com/in/daniil-serga-7499b7242/" Foreground="Blue" RequestNavigate="Hyperlink_RequestNavigate" TextDecorations="None">
-                            <materialDesign:PackIcon Kind="Linkedin" Margin="20 0" Height="30" Width="30"/>
+                            <TextBlock Height="30" Width="30" Margin="20 0">
+                                <materialDesign:PackIcon Kind="Linkedin"  Height="30" Width="30"/>
+                            </TextBlock>
                         </Hyperlink>
                     </TextBlock>
 
                     <TextBlock>
                         <Hyperlink NavigateUri="https://github.com/DaniilSerga" Foreground="Black" RequestNavigate="Hyperlink_RequestNavigate" TextDecorations="None">
-                            <materialDesign:PackIcon Kind="Github" Height="30" Width="30"/>
+                            <TextBlock Height="30" Width="30">
+                                <materialDesign:PackIcon Kind="Github" Height="30" Width="30"/>
+                            </TextBlock>
                         </Hyperlink>
                     </TextBlock>
                 </StackPanel>
+                
                 <TextBox Style="{StaticResource AuthTextBox}" 
                          materialDesign:HintAssist.Hint="E-mail" Width="300"
-                         Margin="0 5"/>
-                <TextBox Style="{StaticResource AuthTextBox}" 
-                         materialDesign:HintAssist.Hint="Пароль" Width="300"
-                         Margin="0 5"/>
+                         Margin="0 5"
+                         Text="{Binding Path=User.Email}"/>
+                
+                <PasswordBox Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"
+                             materialDesign:HintAssist.Hint="Пароль"
+                             Foreground="White"
+                             FontSize="16"
+                             x:Name="PasswordBox"
+                             FontFamily="Century gothic"/>
 
-                <Button Content="Войти" materialDesign:ButtonAssist.CornerRadius="10" Width="200" Margin="0 20 0 0" Background="Transparent"/>
+                <Button x:Name="LogButton" Click="LogButton_Click" Content="Войти" materialDesign:ButtonAssist.CornerRadius="10" Width="200" Margin="0 20 0 0" Background="Transparent"/>
                 
                 <TextBlock Text="Не создали аккаунт?" HorizontalAlignment="Center" Foreground="WhiteSmoke" Margin="0 10 0 0"/>
                 <TextBlock HorizontalAlignment="Center" Foreground="WhiteSmoke">
-                    <Hyperlink Foreground="Blue" NavigateUri="RegPage.xaml"> Регистрация </Hyperlink>
+                    <Hyperlink x:Name="RegistrationLink" Foreground="Blue" Click="RegistrationLink_Click"> Регистрация </Hyperlink>
                 </TextBlock>
             </StackPanel>
         </Grid>

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace InTouch.Models
 {
-    internal class ApplicationContext : DbContext
+    public class ApplicationContext : DbContext
     {
         public DbSet<User> Users { get; set; } = null!;
 
@@ -11,7 +11,7 @@ namespace InTouch.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=localhost;Database=InTouchDB;Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer(@"Server=localhost;Database=InTouchDb;Trusted_Connection=True;TrustServerCertificate=True;");
         }
 
         protected override void OnModelCreating(ModelBuilder builder)

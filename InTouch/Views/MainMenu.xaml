@@ -9,43 +9,71 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="MainMenu">
 
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="50"/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
+    <Border>
+        <Border.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <LinearGradientBrush.RelativeTransform>
+                    <TransformGroup>
+                        <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                        <SkewTransform CenterX="0.5" CenterY="0.5"/>
+                        <RotateTransform Angle="45" CenterX="0.5" CenterY="0.5"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </LinearGradientBrush.RelativeTransform>
+                <GradientStop Color="#FF190677"/>
+                <GradientStop Color="#FFB745DA" Offset="1"/>
+            </LinearGradientBrush>
+        </Border.Background>
 
-        <Border CornerRadius="0 15 0 0" BorderThickness="2" BorderBrush="Black" Margin="0 40 0 0">
-            <Grid>
-                <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
-                    <TextBlock >
-                        <materialDesign:PackIcon Kind="Account" Width="30" Height="30"/>
-                    </TextBlock>
+        <Grid>
+            <TabControl materialDesign:ColorZoneAssist.Mode="Standard"
+                        Background="Transparent"
+                        materialDesign:ShadowAssist.ShadowDepth="Depth1"
+                        Style="{StaticResource MaterialDesignNavigationRailTabControl}"
+                        VerticalContentAlignment="Center">
 
-                    <TextBlock >
-                        <materialDesign:PackIcon Kind="ChatOutline" Width="30" Height="30"/>
-                    </TextBlock>
-                </StackPanel>
-                
-                <Button x:Name="CloseButton" 
-                        Click="CloseButton_Click" 
-                        VerticalAlignment="Bottom" 
-                        DockPanel.Dock="Bottom"
-                        HorizontalAlignment="Center" 
-                        Background="Transparent" 
-                        BorderThickness="0"
-                        Width="30"
-                        Height="30"
-                        Padding="0"
-                        Margin="0 0 0 10">
-                    <Button.Content>
-                         <materialDesign:PackIcon Kind="ExitToApp" VerticalAlignment="Center" Width="30" Height="30"/>
-                    </Button.Content>
-                </Button>
-            </Grid>
-            
-        </Border>
+                <materialDesign:NavigationRailAssist.FloatingContent>
+                    <Border CornerRadius="50" Width="40" Height="40" Margin="0 10 0 0" Background="#FF00A2A2" HorizontalAlignment="Center">
+                        <TextBlock x:Name="UserIcon" Text="{Binding Path=User.FullName[0]}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="16" Foreground="White" FontFamily="Century gothic"/>
+                    </Border>
+                </materialDesign:NavigationRailAssist.FloatingContent>
 
-        <Frame x:Name ="TabsFrame" Grid.Column="1"/>
-    </Grid>
+                <TabItem Width="50" Height="50">
+                    <TabItem.Header>
+                        <materialDesign:PackIcon Width="30"
+                                                 Height="30"
+                                                 HorizontalAlignment="Center"
+                                                 Kind="AccountOutline"/>
+                    </TabItem.Header>
+                    <Frame x:Name="ProfileFrame"/>
+                </TabItem>
+
+                <TabItem Width="50" Height="50">
+                    <TabItem.Header>
+                        <materialDesign:PackIcon Width="30"
+                                                 Height="30"
+                                                 HorizontalAlignment="Center"
+                                                 Kind="ChatOutline" />
+                    </TabItem.Header>
+                    <Frame x:Name="ChatFrame"/>
+                </TabItem>
+            </TabControl>
+
+            <Button x:Name="CloseButton" 
+                Width="30"
+                Height="30"
+                Padding="0"
+                Margin="10 0 0 15"
+                Click="CloseButton_Click" 
+                VerticalAlignment="Bottom" 
+                HorizontalAlignment="Left" 
+                Background="Transparent" 
+                BorderThickness="0"
+                materialDesign:ButtonAssist.CornerRadius="20">
+                <Button.Content>
+                    <materialDesign:PackIcon Kind="ExitToApp" VerticalAlignment="Center" Width="30" Height="30"/>
+                </Button.Content>
+            </Button>
+        </Grid>
+    </Border>
 </Page>

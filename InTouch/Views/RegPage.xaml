@@ -41,43 +41,74 @@
             <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="1">
                 <TextBlock Text="Регистрация" FontFamily="Century Gothic" Foreground="WhiteSmoke" HorizontalAlignment="Center" FontSize="35"/>
 
-                <StackPanel Orientation="Horizontal" Margin="0 15" HorizontalAlignment="Center">
+                <StackPanel Orientation="Horizontal" Margin="0 10 0 5" HorizontalAlignment="Center">
                     <TextBlock>
                         <Hyperlink NavigateUri="https://www.instagram.com/daniilsergx/" Foreground="Black" RequestNavigate="Hyperlink_RequestNavigate" TextDecorations="None">
-                            <materialDesign:PackIcon Kind="Instagram" Height="30" Width="30"/>
+                            <TextBlock Height="30" Width="30">
+                                <materialDesign:PackIcon Kind="Instagram" Height="30" Width="30"/>
+                            </TextBlock>
                         </Hyperlink>
                     </TextBlock>
 
                     <TextBlock>
                         <Hyperlink NavigateUri="https://www.linkedin.com/in/daniil-serga-7499b7242/" Foreground="Blue" RequestNavigate="Hyperlink_RequestNavigate" TextDecorations="None">
-                            <materialDesign:PackIcon Kind="Linkedin" Margin="20 0" Height="30" Width="30"/>
+                            <TextBlock Height="30" Width="30" Margin="20 0">
+                                <materialDesign:PackIcon Kind="Linkedin"  Height="30" Width="30"/>
+                            </TextBlock>
                         </Hyperlink>
                     </TextBlock>
 
                     <TextBlock>
                         <Hyperlink NavigateUri="https://github.com/DaniilSerga" Foreground="Black" RequestNavigate="Hyperlink_RequestNavigate" TextDecorations="None">
-                            <materialDesign:PackIcon Kind="Github" Height="30" Width="30"/>
+                            <TextBlock Height="30" Width="30">
+                                <materialDesign:PackIcon Kind="Github" Height="30" Width="30"/>
+                            </TextBlock>
                         </Hyperlink>
                     </TextBlock>
                 </StackPanel>
+                
                 <TextBox Style="{StaticResource AuthTextBox}" 
                          materialDesign:HintAssist.Hint="ФИО" Width="300"
-                         Margin="0 0 0 5"/>
+                         Margin="0 0 0 5"
+                         Text="{Binding Path=User.FullName}"/>
                 <TextBox Style="{StaticResource AuthTextBox}" 
                          materialDesign:HintAssist.Hint="E-mail" Width="300"
-                         Margin="0 5"/>
-                <TextBox Style="{StaticResource AuthTextBox}" 
-                         materialDesign:HintAssist.Hint="Пароль" Width="300"
-                         Margin="0 5"/>
-                <TextBox Style="{StaticResource AuthTextBox}" 
-                         materialDesign:HintAssist.Hint="Подтвердите пароль" Width="300"
-                         Margin="0 5"/>
+                         Margin="0 5"
+                         Text="{Binding Path=User.Email}"/>
 
-                <Button Content="Войти" materialDesign:ButtonAssist.CornerRadius="10" Width="200" Margin="0 20 0 0" Background="Transparent"/>
+                <ComboBox Margin="0 5" Style="{StaticResource MaterialDesignFloatingHintComboBox}" FontSize="16" Foreground="White" Text="{Binding Path=User.Position}">
+                    <ComboBoxItem Content="Директор" Foreground="Black"/>
+                    <ComboBoxItem Content="Разработчик" Foreground="Black"/>
+                    <ComboBoxItem Content="Дизайнер" Foreground="Black"/>
+                    <ComboBoxItem Content="Менеджер" Foreground="Black"/>
+                    <ComboBoxItem Content="Бизнес-аналитик" Foreground="Black"/>
+                    <ComboBoxItem Content="Тестировщик" Foreground="Black"/>
+                    <materialDesign:HintAssist.Hint>
+                        <TextBlock FontSize="16" Text="Должность" FontFamily='Century gothic'/>
+                    </materialDesign:HintAssist.Hint>
+                </ComboBox>
+                
+                <!--<TextBox Style="{StaticResource AuthTextBox}" 
+                         materialDesign:HintAssist.Hint="Пароль" Width="300"
+                         Margin="0 5"
+                         Text="{Binding Path=User.Password}"/>-->
+                <PasswordBox Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"
+                             materialDesign:HintAssist.Hint="Пароль"
+                             Foreground="White"
+                             FontSize="16"
+                             x:Name="PasswordBox"/>
+
+                <PasswordBox Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"
+                             materialDesign:HintAssist.Hint="Подтвердите пароль"
+                             Foreground="White"
+                             FontSize="16"
+                             x:Name="PasswordBoxRepeat"/>
+
+                <Button Content="Войти" x:Name="RegisterButton" materialDesign:ButtonAssist.CornerRadius="10" Width="200" Margin="0 20 0 0" Background="Transparent" Click="RegisterButton_Click"/>
 
                 <TextBlock Text="Есть аккаунт?" HorizontalAlignment="Center" Foreground="WhiteSmoke" Margin="0 10 0 0"/>
                 <TextBlock HorizontalAlignment="Center" Foreground="WhiteSmoke">
-                    <Hyperlink Foreground="Blue" NavigateUri="LogPage.xaml"> Войти в аккаунт </Hyperlink>
+                    <Hyperlink x:Name="AuthorizateLink" Foreground="Blue" Click="AuthorizateLink_Click"> Войти в аккаунт </Hyperlink>
                 </TextBlock>
             </StackPanel>
         </Grid>

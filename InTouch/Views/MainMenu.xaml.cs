@@ -1,17 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using InTouch.ViewModels;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using System.Windows.Media.Animation;
 
 namespace InTouch.Views
 {
@@ -20,11 +10,43 @@ namespace InTouch.Views
     /// </summary>
     public partial class MainMenu : Page
     {
+        private MainMenuVM _vm = new();
+
+        #region Constructors
         public MainMenu()
         {
             InitializeComponent();
+
+            FillFrames();
         }
 
+        public MainMenu(LogVM logVM)
+        {
+            InitializeComponent();
+
+            _vm.User = logVM.User;
+
+            DataContext = _vm;
+
+            FillFrames();
+        }
+
+        public MainMenu(RegVM regVM)
+        {
+            InitializeComponent();
+
+            FillFrames();
+
+            _vm.User = regVM.User;
+        }
+        #endregion
+
         private void CloseButton_Click(object sender, RoutedEventArgs e) => Application.Current.Shutdown();
+
+        private void FillFrames()
+        {
+            ChatFrame.Navigate(new ChattingPage(_vm));
+            ProfileFrame.Navigate(new UserProfilePage(_vm));
+        }
     }
 }
