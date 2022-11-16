@@ -17,6 +17,11 @@ namespace InTouch.ViewModels
             }
         }
 
+        public bool IsAdminPanelEnabled
+        {
+            get => User.Position == "Директор";
+        }
+
         public MainMenuVM()
         {
             

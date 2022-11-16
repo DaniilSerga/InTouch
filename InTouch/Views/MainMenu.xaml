@@ -57,6 +57,16 @@
                     </TabItem.Header>
                     <Frame x:Name="ChatFrame"/>
                 </TabItem>
+
+                <TabItem Width="50" Height="50" IsEnabled="{Binding Path=IsAdminPanelEnabled}">
+                    <TabItem.Header>
+                        <materialDesign:PackIcon Width="30"
+                                                 Height="30"
+                                                 HorizontalAlignment="Center"
+                                                 Kind="ShieldAccountOutline" />
+                    </TabItem.Header>
+                    <Frame x:Name="AdminPanelFrame"/>
+                </TabItem>
             </TabControl>
 
             <Button x:Name="CloseButton" 

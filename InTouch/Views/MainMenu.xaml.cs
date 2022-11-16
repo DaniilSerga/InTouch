@@ -1,7 +1,6 @@
 ﻿using InTouch.ViewModels;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media.Animation;
 
 namespace InTouch.Views
 {
@@ -34,10 +33,12 @@ namespace InTouch.Views
         public MainMenu(RegVM regVM)
         {
             InitializeComponent();
+            
+            _vm.User = regVM.User;
+
+            DataContext = _vm;
 
             FillFrames();
-
-            _vm.User = regVM.User;
         }
         #endregion
 
@@ -47,6 +48,7 @@ namespace InTouch.Views
         {
             ChatFrame.Navigate(new ChattingPage(_vm));
             ProfileFrame.Navigate(new UserProfilePage(_vm));
+            AdminPanelFrame.Navigate(new AdminPanel());
         }
     }
 }
