@@ -34,5 +34,10 @@ namespace InTouch.Views
                 SendMessage.RaiseEvent(new System.Windows.RoutedEventArgs(Button.ClickEvent));
             }
         }
+
+        private void Page_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        {
+            _vm.FillUsersList();
+        }
     }
 }

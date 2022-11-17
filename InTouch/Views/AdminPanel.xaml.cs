@@ -1,17 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using InTouch.Models.DbModels;
+using InTouch.ViewModels;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace InTouch.Views
 {
@@ -20,10 +10,26 @@ namespace InTouch.Views
     /// </summary>
     public partial class AdminPanel : Page
     {
+        private readonly AdminPanelVM _vm = new();
+
         // TODO Complete design
+        // It'll allow CEO to delete employees
         public AdminPanel()
         {
             InitializeComponent();
+
+            DataContext = _vm;
+        }
+
+        private void DeleteUser_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            if (UsersList.SelectedValue == null)
+            {
+                MessageBox.Show("Выберите пользователя", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            _vm.Delete((User)UsersList.SelectedValue);
         }
     }
 }
