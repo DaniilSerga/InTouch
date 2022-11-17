@@ -1,4 +1,8 @@
-﻿using InTouch.Views;
+﻿using InTouch.Models.DbModels;
+using InTouch.Views;
+using MailKit.Net.Smtp;
+using MailKit.Security;
+using MimeKit;
 using System.Windows;
 using System.Windows.Input;
 
@@ -14,7 +18,6 @@ namespace InTouch
             InitializeComponent();
 
             StartFrame.Navigate(new RegPage(this));
-            //StartFrame.Navigate(new MainMenu());
         }
 
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)

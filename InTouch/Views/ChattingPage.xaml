@@ -37,7 +37,14 @@
                     </StackPanel>
                 </StackPanel>
 
-                <Separator Margin="15 5 15 0"/>
+                <Separator Margin="15 5 15 0" BorderThickness="0">
+                    <Separator.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FF190677" Offset="1"/>
+                            <GradientStop Color="#FFB745DA" Offset="0"/>
+                        </LinearGradientBrush>
+                    </Separator.Background>
+                </Separator>
 
             </StackPanel>
 

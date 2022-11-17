@@ -1,12 +1,10 @@
 ﻿using InTouch.Models;
 using InTouch.Models.DbModels;
-using MailKit.Net.Smtp;
 using MailKit.Security;
 using MimeKit;
 using System;
 using System.ComponentModel;
 using System.Linq;
-using System.Net.Mail;
 using System.Threading.Tasks;
 using SmtpClient = MailKit.Net.Smtp.SmtpClient;
 
@@ -26,8 +24,6 @@ namespace InTouch.ViewModels
                 NotifyPropertyChanged("User");
             }
         }
-
-        public string Password { get; set; }
 
         public async Task RegistrateUser()
         {
@@ -49,9 +45,10 @@ namespace InTouch.ViewModels
             try
             {
                 _context.Users.Add(_user);
+
                 await _context.SaveChangesAsync();
 
-                // SendWelcomingEmail();
+                SendWelcomingEmail();
             }
             catch (Exception ex)
             {
@@ -69,8 +66,6 @@ namespace InTouch.ViewModels
                 "\n\nПриятного использования, ваша команда разработки InTouch <3"
             };
 
-            //bodyBuilder.Attachments.Add("/Images/InTouchLogotype.jpg");
-
             var msg = new MimeMessage()
             {
                 // Theme
@@ -79,11 +74,11 @@ namespace InTouch.ViewModels
                 Body = bodyBuilder.ToMessageBody()
             };
 
-            msg.From.Add(MailboxAddress.Parse("intouchcompany@mail.ru"));
-            msg.To.Add(MailboxAddress.Parse("daniil-serga@rambler.ru"));
+            msg.From.Add(MailboxAddress.Parse("intouchcompany@rambler.ru"));
+            msg.To.Add(MailboxAddress.Parse(User.Email));
 
             using var smtp = new SmtpClient();
-            
+
             smtp.Connect("smtp.rambler.ru", 587, SecureSocketOptions.StartTls);
             smtp.Authenticate("intouchcompany@rambler.ru", "BRM-qF2-2H7-LNh");
 

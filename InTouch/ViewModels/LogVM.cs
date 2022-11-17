@@ -35,12 +35,20 @@ namespace InTouch.ViewModels
             {
                 isExists = _context.Users.Any(u => u.Email == _user.Email && u.Password == _user.Password);
 
-                _user = _context.Users.FirstOrDefault(u => u.Email == _user.Email && u.Password == _user.Password)!;
+                if (isExists)
+                {
+                    _user = _context.Users.FirstOrDefault(u => u.Email == _user.Email && u.Password == _user.Password)!;
+                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OKCancel, MessageBoxImage.Error);
                 return false;
+            }
+
+            if (!isExists || _user is null)
+            {
+                MessageBox.Show("Проверьте введённые данные.", "Ошибка", MessageBoxButton.OKCancel, MessageBoxImage.Error);
             }
 
             return isExists;

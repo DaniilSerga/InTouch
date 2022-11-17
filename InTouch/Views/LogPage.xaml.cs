@@ -38,6 +38,12 @@ namespace InTouch.Views
 
         private void LogButton_Click(object sender, RoutedEventArgs e)
         {
+            if (PasswordBox.Password.Length == 0)
+            {
+                MessageBox.Show("Вам необходимо ввести пароль.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
             _vm.User.Password = PasswordBox.Password;
 
             if (_vm.IsUserExists())

@@ -3,14 +3,28 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:local="clr-namespace:InTouch.Views"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="UserProfilePage">
 
     <Grid>
-        <Border CornerRadius="50" Width="100" Height="100" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="50 50 0 0" Background="AliceBlue">
-            <TextBlock Text="C" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="35"/>
+        <Border HorizontalAlignment="Left" VerticalAlignment="Top" Margin="50 50 0 0">
+            <StackPanel Orientation="Horizontal">
+                <Border CornerRadius="50" Width="100" Height="100"  Background="AliceBlue">
+                    <TextBlock Text="{Binding Path=User.FullName[0]}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="35"/>
+                </Border>
+
+                <StackPanel Orientation="Vertical" Margin="10 0 0 0">
+                    <TextBlock Text="{Binding Path=User.FullName}" Foreground="White" FontSize="38" FontFamily="Century Gothic"/>
+                    <TextBlock Text="{Binding Path=User.Email}" Foreground="WhiteSmoke" FontSize="20"/>
+                    <TextBlock Text="{Binding Path=User.Position}" Foreground="WhiteSmoke" FontSize="20"/>
+                </StackPanel>
+            </StackPanel>
+            
+            
         </Border>
+        
     </Grid>
 </Page>

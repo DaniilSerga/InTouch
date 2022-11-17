@@ -141,7 +141,7 @@ namespace InTouch.ViewModels
         }
         #endregion
 
-        public void FillUsersList() => Users = _context.Users.ToList();
+        public void FillUsersList() => Users = _context.Users.Where(u => u.Email != User.Email).ToList();
 
         #region INotifyProperty section
         public event PropertyChangedEventHandler? PropertyChanged;

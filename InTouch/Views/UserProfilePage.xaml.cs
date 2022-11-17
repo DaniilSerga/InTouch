@@ -8,9 +8,15 @@ namespace InTouch.Views
     /// </summary>
     public partial class UserProfilePage : Page
     {
+        private readonly ProfileVM _vm = new();
+
         public UserProfilePage(MainMenuVM menuVM)
         {
             InitializeComponent();
+
+            _vm.User = menuVM.User;
+
+            DataContext = _vm;
         }
     }
 }
