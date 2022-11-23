@@ -1,4 +1,5 @@
 ﻿using InTouch.ViewModels;
+using System;
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
@@ -38,17 +39,18 @@ namespace InTouch.Views
 
         private void LogButton_Click(object sender, RoutedEventArgs e)
         {
-            if (PasswordBox.Password.Length == 0)
-            {
-                MessageBox.Show("Вам необходимо ввести пароль.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-
             _vm.User.Password = PasswordBox.Password;
 
-            if (_vm.IsUserExists())
+            try
             {
-                _mainWindow.StartFrame.Navigate(new MainMenu(_vm));
+                if (_vm.IsUserExists())
+                {
+                    _mainWindow.StartFrame.Navigate(new MainMenu(_vm));
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OKCancel, MessageBoxImage.Error);
             }
         }
 

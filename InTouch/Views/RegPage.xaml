@@ -70,13 +70,15 @@
                 <TextBox Style="{StaticResource AuthTextBox}" 
                          materialDesign:HintAssist.Hint="ФИО" Width="300"
                          Margin="0 0 0 5"
-                         Text="{Binding Path=User.FullName}"/>
+                         Text="{Binding Path=User.FullName}"
+                         x:Name="FullNameBox"/>
                 <TextBox Style="{StaticResource AuthTextBox}" 
                          materialDesign:HintAssist.Hint="E-mail" Width="300"
                          Margin="0 5"
-                         Text="{Binding Path=User.Email}"/>
+                         Text="{Binding Path=User.Email}"
+                         x:Name="EmailBox"/>
 
-                <ComboBox Margin="0 5" Style="{StaticResource MaterialDesignFloatingHintComboBox}" FontSize="16" Foreground="White" Text="{Binding Path=User.Position}">
+                <ComboBox x:Name="PositionComboBox" Margin="0 5" Style="{StaticResource MaterialDesignFloatingHintComboBox}" FontSize="16" Foreground="White" Text="{Binding Path=User.Position}">
                     <ComboBoxItem Content="Директор" Foreground="Black"/>
                     <ComboBoxItem Content="Разработчик" Foreground="Black"/>
                     <ComboBoxItem Content="Дизайнер" Foreground="Black"/>
@@ -88,10 +90,6 @@
                     </materialDesign:HintAssist.Hint>
                 </ComboBox>
                 
-                <!--<TextBox Style="{StaticResource AuthTextBox}" 
-                         materialDesign:HintAssist.Hint="Пароль" Width="300"
-                         Margin="0 5"
-                         Text="{Binding Path=User.Password}"/>-->
                 <PasswordBox Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"
                              materialDesign:HintAssist.Hint="Пароль"
                              Foreground="White"

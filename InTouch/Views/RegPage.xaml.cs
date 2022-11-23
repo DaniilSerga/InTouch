@@ -1,10 +1,10 @@
 ﻿using InTouch.ViewModels;
+using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
-using MimeKit;
 
 namespace InTouch.Views
 {
@@ -44,7 +44,19 @@ namespace InTouch.Views
             {
                 _vm.User.Password = PasswordBox.Password;
 
-                Task.Run(() => _vm.RegistrateUser());
+                try
+                {
+                    Task.Run(() => _vm.RegistrateUser());
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    FullNameBox.Text = string.Empty;
+                    EmailBox.Text = string.Empty;
+                    PositionComboBox.SelectedIndex = -1;
+                    PasswordBox.Password = string.Empty;
+                    PasswordBoxRepeat.Password = String.Empty;
+                }
             }
 
             _mainWindow.StartFrame.Navigate(new MainMenu(_vm));

@@ -1,24 +1,30 @@
 ﻿using System.Net;
 using System.Net.Sockets;
 
-ServerObject server = new ServerObject();// создаем сервер
-await server.ListenAsync(); // запускаем сервер
+ServerObject server = new(); // Initializing server
+await server.ListenAsync(); // Server launching
 
+#region Server configuration
 class ServerObject
 {
-    TcpListener tcpListener = new TcpListener(IPAddress.Any, 8888); // сервер для прослушивания
-    List<ClientObject> clients = new List<ClientObject>(); // все подключения
+    TcpListener tcpListener = new(IPAddress.Any, 8888); // Server listener
+    List<ClientObject> clients = new(); // All connections
 
     protected internal void RemoveConnection(string id)
     {
-        // получаем по id закрытое подключение
+        // Getting closed connection by Id
         ClientObject? client = clients.FirstOrDefault(c => c.Id == id);
-        // и удаляем его из списка подключений
-        if (client != null) clients.Remove(client);
+
+        // And deleting it from connections list
+        if (client != null)
+        {
+            clients.Remove(client);
+        }
+
         client?.Close();
     }
 
-    // прослушивание входящих подключений
+    // Listening to incoming connections
     protected internal async Task ListenAsync()
     {
         try
@@ -30,7 +36,7 @@ class ServerObject
             {
                 TcpClient tcpClient = await tcpListener.AcceptTcpClientAsync();
 
-                ClientObject clientObject = new ClientObject(tcpClient, this);
+                ClientObject clientObject = new(tcpClient, this);
                 clients.Add(clientObject);
                 Task.Run(clientObject.ProcessAsync);
             }
@@ -45,28 +51,33 @@ class ServerObject
         }
     }
 
-    // трансляция сообщения подключенным клиентам
+    // Message translation to all connected users
     protected internal async Task BroadcastMessageAsync(string message, string id)
     {
         foreach (var client in clients)
         {
-            if (client.Id != id) // если id клиента не равно id отправителя
+            if (client.Id != id) // if client's Id isn't equal to sender's id
             {
-                await client.Writer.WriteLineAsync(message); //передача данных
+                await client.Writer.WriteLineAsync(message); // data sending
                 await client.Writer.FlushAsync();
             }
         }
     }
-    // отключение всех клиентов
+
+    // Diconnects all users
     protected internal void Disconnect()
     {
         foreach (var client in clients)
         {
-            client.Close(); //отключение клиента
+            client.Close(); // User disconnection
         }
-        tcpListener.Stop(); //остановка сервера
+
+        tcpListener.Stop(); // Server stop
     }
 }
+#endregion
+
+#region Client configuration
 class ClientObject
 {
     protected internal string Id { get; } = Guid.NewGuid().ToString();
@@ -104,16 +115,25 @@ class ClientObject
                 try
                 {
                     message = await Reader.ReadLineAsync();
-                    if (message == null) continue;
+
+                    if (message == null)
+                    {
+                        continue;
+                    }
+
                     message = $"{userName}: {message}";
+
                     Console.WriteLine(message);
+
                     await server.BroadcastMessageAsync(message, Id);
                 }
                 catch
                 {
                     message = $"{userName} покинул чат";
                     Console.WriteLine(message);
+
                     await server.BroadcastMessageAsync(message, Id);
+
                     break;
                 }
             }
@@ -137,3 +157,4 @@ class ClientObject
         client.Close();
     }
 }
+#endregion

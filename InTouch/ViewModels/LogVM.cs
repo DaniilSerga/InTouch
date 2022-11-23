@@ -22,13 +22,23 @@ namespace InTouch.ViewModels
             }
         }
 
-        public LogVM()
-        {
-
-        }
-
         public bool IsUserExists()
         {
+            if (_user is null)
+            {
+                throw new Exception("Введите данные");
+            }
+
+            if (string.IsNullOrEmpty(_user.Email))
+            {
+                throw new Exception("Укажите Email");
+            }
+
+            if (string.IsNullOrEmpty(_user.Password))
+            {
+                throw new Exception("Укажите пароль");
+            }
+
             bool isExists = true;
 
             try
@@ -42,13 +52,12 @@ namespace InTouch.ViewModels
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OKCancel, MessageBoxImage.Error);
-                return false;
+                throw new Exception(ex.Message);
             }
 
-            if (!isExists || _user is null)
+            if (!isExists)
             {
-                MessageBox.Show("Проверьте введённые данные.", "Ошибка", MessageBoxButton.OKCancel, MessageBoxImage.Error);
+                throw new Exception("Ошибка авторизации (проверьте введённые данные)");
             }
 
             return isExists;

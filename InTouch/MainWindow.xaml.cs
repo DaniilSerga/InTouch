@@ -1,8 +1,4 @@
-﻿using InTouch.Models.DbModels;
-using InTouch.Views;
-using MailKit.Net.Smtp;
-using MailKit.Security;
-using MimeKit;
+﻿using InTouch.Views;
 using System.Windows;
 using System.Windows.Input;
 

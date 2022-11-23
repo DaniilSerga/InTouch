@@ -49,7 +49,10 @@ namespace InTouch.ViewModels
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
             }
+
+            MessageBox.Show("Пользователь был успешно удален.", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;

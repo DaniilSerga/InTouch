@@ -1,5 +1,7 @@
 ﻿using InTouch.Models.DbModels;
 using Microsoft.EntityFrameworkCore;
+using System.Configuration;
+using System.Windows;
 
 namespace InTouch.Models
 {
@@ -11,7 +13,7 @@ namespace InTouch.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=localhost;Database=InTouchDb;Trusted_Connection=True;TrustServerCertificate=True;");
+            optionsBuilder.UseSqlServer(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
         }
 
         protected override void OnModelCreating(ModelBuilder builder)
