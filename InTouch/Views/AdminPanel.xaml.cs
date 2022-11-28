@@ -12,8 +12,7 @@ namespace InTouch.Views
     {
         private readonly AdminPanelVM _vm = new();
 
-        // TODO Complete design
-        // It'll allow CEO to delete employees
+        // It'll allow Director to delete employees
         public AdminPanel()
         {
             InitializeComponent();
@@ -21,7 +20,7 @@ namespace InTouch.Views
             DataContext = _vm;
         }
 
-        private void DeleteUser_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void DeleteUser_Click(object sender, RoutedEventArgs e)
         {
             if (UsersList.SelectedValue == null)
             {

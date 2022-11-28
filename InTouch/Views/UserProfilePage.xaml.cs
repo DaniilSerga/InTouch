@@ -16,6 +16,7 @@ namespace InTouch.Views
 
             _vm.User = menuVM.User;
 
+            // Setting DataContext, so UI elements can freely use ViewModel
             DataContext = _vm;
         }
     }

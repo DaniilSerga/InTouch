@@ -22,6 +22,7 @@ namespace InTouch.Views
 
             _mainWindow = mainWindow;
 
+            // Setting DataContext, so UI elements can freely use ViewModel
             DataContext = _vm;
         }
 
@@ -51,11 +52,12 @@ namespace InTouch.Views
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+
                     FullNameBox.Text = string.Empty;
                     EmailBox.Text = string.Empty;
                     PositionComboBox.SelectedIndex = -1;
                     PasswordBox.Password = string.Empty;
-                    PasswordBoxRepeat.Password = String.Empty;
+                    PasswordBoxRepeat.Password = string.Empty;
                 }
             }
 

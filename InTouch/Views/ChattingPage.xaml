@@ -47,13 +47,13 @@
                             <Grid>
                                 <StackPanel Orientation="Vertical" Margin="0 10 0 0">
                                     <StackPanel Orientation="Horizontal">
-                                        <StackPanel Orientation="Vertical" VerticalAlignment="Center" Margin="10 0 0 0">
+                                        <StackPanel Orientation="Vertical" VerticalAlignment="Center" Margin="3 0 0 0">
                                             <TextBlock TextAlignment="Left" Text="{Binding Path=FullName}" FontSize="16" Foreground="White" FontFamily="Century gothic"/>
                                             <TextBlock TextAlignment="Left" Text="{Binding Path=Position}" FontSize="12" Foreground="LightGray" FontFamily="Century gothic"/>
                                         </StackPanel>
                                     </StackPanel>
 
-                                    <Separator Margin="15 5 15 0" Width="250"/>
+                                    <Separator Margin="8 5 15 0" Width="250"/>
 
                                 </StackPanel>
                             </Grid>

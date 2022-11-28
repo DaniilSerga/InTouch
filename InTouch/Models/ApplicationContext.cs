@@ -1,7 +1,6 @@
 ﻿using InTouch.Models.DbModels;
 using Microsoft.EntityFrameworkCore;
 using System.Configuration;
-using System.Windows;
 
 namespace InTouch.Models
 {
@@ -13,6 +12,7 @@ namespace InTouch.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            // Getting connection string from configuration file
             optionsBuilder.UseSqlServer(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
         }
 
