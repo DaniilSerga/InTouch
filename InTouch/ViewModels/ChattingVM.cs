@@ -94,9 +94,11 @@ namespace InTouch.ViewModels
         }
 
         // Starts listening and displays that user is online
+        // Начало прослушивания и отображения остальным пользователям, что текущий пользователь теперь онлайн
         async Task ReceiveMessageAsync(StreamReader reader)
         {
             // Sends user's full name to get welcoming message
+            // Отправление ФИО пользователя, для того чтобы остальные пользователи увидели, кто подключился
             await Writer.WriteLineAsync($"{User.FullName} ({User.Position})");
             await Writer.FlushAsync();
 
@@ -105,15 +107,18 @@ namespace InTouch.ViewModels
                 try
                 {
                     // Reads incoming message
+                    // Чтение входящего сообщения
                     string? message = reader.ReadLine();
 
                     // Skip null or empty message
+                    // В случае отправки пустого сообщения, отправка будет отменена
                     if (string.IsNullOrEmpty(message))
                     {
                         continue;
                     }
 
                     // Display message
+                    // Отображение сообщения
                     Output += $"\n{message}";
                 }
                 catch (Exception ex)
@@ -129,8 +134,9 @@ namespace InTouch.ViewModels
         {
             try
             {
-                // сначала отправляем имя
                 Output += $"\n{User.FullName} ({User.Position}): {message}";
+
+                // Отправка сообщения
                 await Writer.WriteLineAsync(message);
                 await Writer.FlushAsync();
             }
@@ -141,6 +147,7 @@ namespace InTouch.ViewModels
         }
         #endregion
 
+        // Заполнение списка с пользователями на экране
         public void FillUsersList() => Users = _context.Users.Where(u => u.Email != User.Email).ToList();
 
         #region INotifyProperty section

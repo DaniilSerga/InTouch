@@ -18,6 +18,8 @@ namespace InTouch.Views
 
             // Setting DataContext, so UI elements can freely use ViewModel
             DataContext = _vm;
+
+            // TODO Добавить карусель
         }
     }
 }

@@ -9,7 +9,7 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="MainMenu">
 
-    <Border>
+    <Border CornerRadius="20">
         <Border.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                 <LinearGradientBrush.RelativeTransform>

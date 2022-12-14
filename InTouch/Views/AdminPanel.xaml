@@ -7,7 +7,8 @@
       xmlns:local="clr-namespace:InTouch.Views"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="750"
-      Title="AdminPanel">
+      Title="AdminPanel"
+      Style="{StaticResource PagesAnimation}">
 
     <Grid>
         <Grid.RowDefinitions>
